@@ -1,4 +1,5 @@
 package com.hs_weingarten.sk.am.password_manager;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;

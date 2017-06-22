@@ -16,15 +16,15 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
 
     // The CancellationSignal should be used whenever the app can't process user input, like when it goes into background
     // When you don't do this other apps can't use the fingerprintsensor, even the lockscreen
-    private CancellationSignal cancellationSignal;
+    public CancellationSignal cancellationSignal;
     private Context context;
-    private MainActivity mainActivity;
+    private LogInActivity mainActivity;
 
     public FingerprintHandler(Context mContext){
         context = mContext;
     }
 
-    public void startAuth(FingerprintManager manager, FingerprintManager.CryptoObject cryptoObject, MainActivity main){
+    public void startAuth(FingerprintManager manager, FingerprintManager.CryptoObject cryptoObject, LogInActivity main){
         mainActivity = main;
         cancellationSignal = new CancellationSignal();
         if(ActivityCompat.checkSelfPermission(context, Manifest.permission.USE_FINGERPRINT) != PackageManager.PERMISSION_GRANTED){
