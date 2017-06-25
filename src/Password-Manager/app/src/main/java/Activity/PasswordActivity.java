@@ -1,4 +1,4 @@
-package com.hs_weingarten.sk.am.password_manager;
+package Activity;
 
 import android.app.Fragment;
 import android.content.Context;
@@ -11,6 +11,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.hs_weingarten.sk.am.password_manager.R;
 
 public class PasswordActivity extends Fragment{
 

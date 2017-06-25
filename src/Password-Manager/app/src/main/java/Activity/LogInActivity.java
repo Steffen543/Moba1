@@ -1,9 +1,10 @@
-package com.hs_weingarten.sk.am.password_manager;
+package Activity;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.KeyguardManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.hardware.fingerprint.FingerprintManager;
@@ -16,6 +17,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -23,6 +25,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
+
+import com.hs_weingarten.sk.am.password_manager.FingerprintHandler;
+import com.hs_weingarten.sk.am.password_manager.R;
 
 import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
@@ -45,11 +50,15 @@ import javax.crypto.SecretKey;
 
 // import android.support.design.widget.CoordinatorLayout;
 
-public class MainActivity extends AppCompatActivity {
+public class LogInActivity extends AppCompatActivity {
 
+    private static final String TAG = "Password-Manager";
     private static final String KEY = "fingerprintKey";
     private Cipher cipher;
     private KeyStore keyStore;
+    private FingerprintHandler helper;
+    private FingerprintManager fingerprintManager;
+    private FingerprintManager.CryptoObject cryptoObject;
 
     private SharedPreferences pref;
     private SharedPreferences.Editor editor;
@@ -65,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         // If the SDKVersion is lower than 23, a verification is needed that the device is running Marshmallow
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             KeyguardManager keyguardManager = (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
-            FingerprintManager fingerprintManager = (FingerprintManager) getSystemService(FINGERPRINT_SERVICE);
+            fingerprintManager = (FingerprintManager) getSystemService(FINGERPRINT_SERVICE);
 
             if (!fingerprintManager.isHardwareDetected()) {
                 // If the device isn't equiped with a fingerprintsensor
@@ -95,12 +104,13 @@ public class MainActivity extends AppCompatActivity {
                 if(initCipher()){
                     // If the initialization of the cipher was successful
                     setContentView(R.layout.fingerprint_layout);
+
                     Button changeToPassword = (Button) findViewById(R.id.change_button);
                     changeToPassword.setOnClickListener(changeOnClick);
 
-                    FingerprintManager.CryptoObject cryptoObject = new FingerprintManager.CryptoObject(cipher);
+                    cryptoObject = new FingerprintManager.CryptoObject(cipher);
 
-                    FingerprintHandler helper = new FingerprintHandler(this);
+                    helper = new FingerprintHandler(this);
                     helper.startAuth(fingerprintManager, cryptoObject, this);
                 }
             }
@@ -108,6 +118,25 @@ public class MainActivity extends AppCompatActivity {
             PasswordSetCheck();
         }
 
+    }
+
+    @Override
+    protected void onPause(){
+        // needed to give other apps and lockscreen the permission of the fingerprintsensor
+        if(helper != null){
+            Log.d(TAG, "onPause: canceling the FingerPrintHandler");
+            helper.cancellationSignal.cancel();
+        }
+
+        super.onPause();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    @Override
+    protected void onResume(){
+        // needed to restart the fingerprintsensor
+        helper.startAuth(fingerprintManager, cryptoObject, this);
+        super.onResume();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -215,7 +244,7 @@ public class MainActivity extends AppCompatActivity {
         EditText password2 = (EditText) findViewById(R.id.password2);
 
         if(password1.getText().toString().length() == 0){
-            Toast.makeText(MainActivity.this, "Password need charackters", Toast.LENGTH_LONG).show();
+            Toast.makeText(LogInActivity.this, "Password need charackters", Toast.LENGTH_LONG).show();
         }else {
             // check if the passwords are equal
             if (password1.getText().toString().equals(password2.getText().toString())) {
@@ -226,7 +255,7 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 // passwords weren't equal
                 // login_info.make(relativeLayout, "Passwords aren't equal", Snackbar.LENGTH_LONG).show();
-                Toast.makeText(MainActivity.this, "Passwords aren't equal", Toast.LENGTH_LONG).show();
+                Toast.makeText(LogInActivity.this, "Passwords aren't equal", Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -267,7 +296,7 @@ public class MainActivity extends AppCompatActivity {
                 }else {
                     // password isn't correct
                     // login_info.make(relativeLayout, "Password incorrect", Snackbar.LENGTH_LONG).show();
-                    Toast.makeText(MainActivity.this, "Password incorrect", Toast.LENGTH_LONG).show();
+                    Toast.makeText(LogInActivity.this, "Password incorrect", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -275,8 +304,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void MainApp(){
         // show the MainApp
-        // all methods of the MainActivity
+        // all methods of the LogInActivity
+        //setContentView(R.layout.activity_main);
+        final Intent i = new Intent(this, PasswordActivity.class);
+        startActivity(i);
 
-        setContentView(R.layout.activity_main);
     }
 }
