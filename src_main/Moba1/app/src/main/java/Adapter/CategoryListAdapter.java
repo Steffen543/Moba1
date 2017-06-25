@@ -68,7 +68,7 @@ public class CategoryListAdapter extends BaseAdapter implements Filterable {
 
         holder.nameView.setText(category.getName());
         holder.descriptionView.setText(Math.round(category.getChildCount()) + " Einträge");
-        holder.addedView.setText(category.getAdded());
+        holder.addedView.setText(category.getAdded().substring(0,10));
         return convertView;
     }
 

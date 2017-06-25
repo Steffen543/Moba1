@@ -63,8 +63,8 @@ public class SearchListAdapter extends BaseAdapter implements Filterable {
             holder.addedView = (TextView) convertView.findViewById(R.id.righttext);
             PasswordModel password = (PasswordModel) searchable;
             holder.nameView.setText(password.getName());
-            holder.descriptionView.setText(password.getDescription());
-            holder.addedView.setText(password.getAdded());
+            holder.descriptionView.setText(password.getEmail());
+            holder.addedView.setText(password.getAdded().substring(0,10));
         }
         else  if(searchable instanceof CategoryModel){
             convertView = layoutInflater.inflate(R.layout.category_list_row_layout, null);
@@ -75,7 +75,7 @@ public class SearchListAdapter extends BaseAdapter implements Filterable {
             CategoryModel category = (CategoryModel) searchable;
             holder.nameView.setText(category.getName());
             holder.descriptionView.setText(Math.round(category.getChildCount()) + " Einträge");
-            holder.addedView.setText(category.getAdded());
+            holder.addedView.setText(category.getAdded().substring(0,10));
         }
         else
         {
