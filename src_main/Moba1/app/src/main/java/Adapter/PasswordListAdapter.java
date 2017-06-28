@@ -64,7 +64,13 @@ public class PasswordListAdapter extends BaseAdapter implements Filterable {
         PasswordModel pwd = listData.get(i);
 
         holder.nameView.setText(pwd.getName());
-        holder.descriptionView.setText(pwd.getEmail());
+
+        String email = pwd.getEmail();
+        if(email.length() > 20)
+            holder.descriptionView.setText(email.substring(0, 20) + "..");
+        else
+            holder.descriptionView.setText(email);
+
         holder.addedView.setText(pwd.getAdded().substring(0,10));
 
 

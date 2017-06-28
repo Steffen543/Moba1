@@ -10,11 +10,15 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
+import android.util.SparseBooleanArray;
+import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,19 +33,23 @@ import Adapter.PasswordListAdapter;
 import Data.Category.CategoryDataSource;
 import Data.Password.PasswordDataSource;
 import Model.CategoryModel;
+import Model.ISearchable;
 import Model.PasswordModel;
 
 /**
  * Created by Steffen on 22.06.2017.
  */
 
-public class CategoryEntriesActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
+public class CategoryEntriesActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener, AbsListView.MultiChoiceModeListener {
 
     private CategoryModel category;
     private CategoryDataSource categoryDataSource;
     private PasswordDataSource passwordDataSource;
     private PasswordListAdapter passwordAdapter;
     private ListView passwordListView;
+    private int counterSelections = 0;
+    public static final String LOG_TAG = CategoryEntriesActivity.class.getSimpleName();
+    private ActionMode _actionMode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +75,7 @@ public class CategoryEntriesActivity extends AppCompatActivity implements View.O
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         initView();
+        initializeContextualActionBar();
 
     }
 
@@ -110,6 +119,11 @@ public class CategoryEntriesActivity extends AppCompatActivity implements View.O
         passwordListView.setOnItemClickListener(this);
     }
 
+    private void initializeContextualActionBar()  {
+
+        passwordListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
+        passwordListView.setMultiChoiceModeListener(this);
+    }
 
 
     @Override
@@ -127,6 +141,8 @@ public class CategoryEntriesActivity extends AppCompatActivity implements View.O
         super.onPause();
         categoryDataSource.close();
         passwordDataSource.close();
+        if(_actionMode != null)
+            _actionMode.finish();
     }
 
 
@@ -191,5 +207,80 @@ public class CategoryEntriesActivity extends AppCompatActivity implements View.O
         final Intent intent = new Intent(this, EditPasswordActivity.class);
         intent.putExtra("passwordId", String.valueOf(item.getId()));
         startActivity(intent);
+    }
+
+
+
+
+    @Override
+    public void onItemCheckedStateChanged(ActionMode mode, int i, long l, boolean checked) {
+        if(checked)
+            counterSelections++;
+        else counterSelections--;
+        String cabTitle = counterSelections + " " + getString(R.string.cab_checked_string);
+        mode.setTitle(cabTitle);
+        mode.invalidate();
+    }
+
+    @Override
+    public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
+        _actionMode = actionMode;
+        getMenuInflater().inflate(R.menu.activity_main_contextual_action_bar, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+        return false;
+    }
+
+    @Override
+    public boolean onActionItemClicked(final ActionMode mode, MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.cab_delete:
+
+                final SparseBooleanArray touchedPasswordPositions = passwordListView.getCheckedItemPositions();
+
+
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which){
+                            case DialogInterface.BUTTON_POSITIVE:
+                                for (int i=0; i < touchedPasswordPositions.size(); i++) {
+                                    boolean isChecked = touchedPasswordPositions.valueAt(i);
+                                    if(isChecked) {
+                                        int postitionInListView = touchedPasswordPositions.keyAt(i);
+                                        PasswordModel password = (PasswordModel) passwordListView.getItemAtPosition(postitionInListView);
+                                        Log.d(LOG_TAG, "Position im ListView: " + postitionInListView + " Inhalt: " + password.toString());
+                                        passwordDataSource.deletePassword(password);
+                                    }
+                                }
+                                initView();
+                                mode.finish();
+                                break;
+
+                            case DialogInterface.BUTTON_NEGATIVE:
+
+                                break;
+                        }
+                    }
+                };
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage("Wirklich " + touchedPasswordPositions.size() + " Passwörter löschen?").setPositiveButton("Ja", dialogClickListener)
+                        .setNegativeButton("Abbrechen", dialogClickListener).show();
+
+
+
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    @Override
+    public void onDestroyActionMode(ActionMode actionMode) {
+        counterSelections = 0;
     }
 }

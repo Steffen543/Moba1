@@ -215,8 +215,7 @@ public class EditPasswordActivity extends AppCompatActivity implements View.OnCl
         }
     }
 
-    private void OpenCreatePasswordDialog()
-    {
+    private void OpenCreatePasswordDialog() {
         final EditPasswordActivity thisActivity = this;
         android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(this);
         final View dialogsView = getLayoutInflater().inflate(R.layout.dialog_create_password, null);
@@ -270,20 +269,9 @@ public class EditPasswordActivity extends AppCompatActivity implements View.OnCl
 
                 String randomString = Helper.RandomTextGenerator.GenerateText(countNumbers, useLetters, useNumbers, useSpecialCharacters);
 
-
-
-
                 createPasswordDialog.dismiss();
-                Toast.makeText(thisActivity, randomString, Toast.LENGTH_LONG).show();
-
-                /*final EditText editTextName = (EditText) dialogsView.findViewById(R.id.add_category_name);
-                String newName = editTextName.getText().toString();
-
-                if (!TextUtils.isEmpty(newName)) {
-                    CategoryModel category = categoryDataSource.createCategoryModel(newName, "");
-                    initializeCategories();
-                    addCategoryDialog.dismiss();
-                }*/
+                ClipboardHelper.setClipboard(thisActivity, randomString);
+                editTextPassword.setText(randomString);
             }
         });
 

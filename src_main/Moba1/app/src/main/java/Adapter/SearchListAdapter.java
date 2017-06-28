@@ -63,7 +63,14 @@ public class SearchListAdapter extends BaseAdapter implements Filterable {
             holder.addedView = (TextView) convertView.findViewById(R.id.righttext);
             PasswordModel password = (PasswordModel) searchable;
             holder.nameView.setText(password.getName());
-            holder.descriptionView.setText(password.getEmail());
+
+            String email = password.getEmail();
+            if(email.length() > 20)
+                holder.descriptionView.setText(email.substring(0, 20) + "..");
+            else
+                holder.descriptionView.setText(email);
+
+
             holder.addedView.setText(password.getAdded().substring(0,10));
         }
         else  if(searchable instanceof CategoryModel){

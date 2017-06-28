@@ -43,7 +43,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private CategoryDataSource categoryDataSource;
     private PasswordDataSource passwordDataSource;
     private ListView categoryListView;
-    int counterSelections = 0;
+    private int counterSelections = 0;
+    private ActionMode _actionMode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,11 +83,23 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        final CategoryModel item = (CategoryModel) adapterView.getItemAtPosition(i);
+        final ISearchable item = (ISearchable) adapterView.getItemAtPosition(i);
 
-        final Intent intent = new Intent(this, CategoryEntriesActivity.class);
-        intent.putExtra("categoryid", String.valueOf(item.getId()));
-        startActivity(intent);
+        if(item instanceof CategoryModel) {
+            CategoryModel category = (CategoryModel) item;
+            final Intent intent = new Intent(this, CategoryEntriesActivity.class);
+            intent.putExtra("categoryid", String.valueOf(category.getId()));
+            startActivity(intent);
+        }
+        if(item instanceof PasswordModel) {
+            PasswordModel password = (PasswordModel) item;
+            final Intent intent = new Intent(this, EditPasswordActivity.class);
+            intent.putExtra("passwordId", String.valueOf(password.getId()));
+            startActivity(intent);
+        }
+
+
+
     }
 
     @Override
@@ -197,7 +210,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         categoryListView.setOnItemClickListener(this);
     }
 
-    ActionMode _actionMode;
+
 
     @Override
     public void onItemCheckedStateChanged(ActionMode mode, int i, long l, boolean checked) {
@@ -222,35 +235,52 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     @Override
-    public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+    public boolean onActionItemClicked(final ActionMode mode, MenuItem item) {
         switch (item.getItemId()) {
             case R.id.cab_delete:
 
-                SparseBooleanArray touchedCategoriesPositions = categoryListView.getCheckedItemPositions();
-                for (int i=0; i < touchedCategoriesPositions.size(); i++) {
-                    boolean isChecked = touchedCategoriesPositions.valueAt(i);
-                    if(isChecked) {
-                        int postitionInListView = touchedCategoriesPositions.keyAt(i);
-                        ISearchable checkedObj = (ISearchable) categoryListView.getItemAtPosition(postitionInListView);
+                final SparseBooleanArray touchedCategoriesPositions = categoryListView.getCheckedItemPositions();
 
-                        if(checkedObj instanceof CategoryModel) {
-                            CategoryModel category = (CategoryModel) checkedObj;
-                            Log.d(LOG_TAG, "Position im ListView: " + postitionInListView + " Inhalt: " + category.toString());
-                            categoryDataSource.deleteCategory(category);
-                        }
-                        if(checkedObj instanceof PasswordModel) {
-                            PasswordModel password = (PasswordModel) checkedObj;
-                            Log.d(LOG_TAG, "Position im ListView: " + postitionInListView + " Inhalt: " + password.toString());
-                            passwordDataSource.deletePassword(password);
-                        }
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which){
+                            case DialogInterface.BUTTON_POSITIVE:
+                                for (int i=0; i < touchedCategoriesPositions.size(); i++) {
+                                    boolean isChecked = touchedCategoriesPositions.valueAt(i);
+                                    if(isChecked) {
+                                        int postitionInListView = touchedCategoriesPositions.keyAt(i);
+                                        ISearchable checkedObj = (ISearchable) categoryListView.getItemAtPosition(postitionInListView);
 
+                                        if(checkedObj instanceof CategoryModel) {
+                                            CategoryModel category = (CategoryModel) checkedObj;
+                                            Log.d(LOG_TAG, "Position im ListView: " + postitionInListView + " Inhalt: " + category.toString());
+                                            categoryDataSource.deleteCategory(category);
+                                        }
+                                        if(checkedObj instanceof PasswordModel) {
+                                            PasswordModel password = (PasswordModel) checkedObj;
+                                            Log.d(LOG_TAG, "Position im ListView: " + postitionInListView + " Inhalt: " + password.toString());
+                                            passwordDataSource.deletePassword(password);
+                                        }
+
+                                    }
+                                }
+                                initializeCategories();
+                                mode.finish();
+                                break;
+
+                            case DialogInterface.BUTTON_NEGATIVE:
+
+                                break;
+                        }
                     }
-                }
-                initializeCategories();
+                };
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage("Wirklich " + touchedCategoriesPositions.size() + " Einträge löschen?").setPositiveButton("Ja", dialogClickListener)
+                        .setNegativeButton("Abbrechen", dialogClickListener).show();
 
 
-
-                mode.finish();
                 return true;
             default:
                 return false;
