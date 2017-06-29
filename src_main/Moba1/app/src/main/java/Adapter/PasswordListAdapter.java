@@ -11,14 +11,10 @@ import android.widget.TextView;
 
 import com.am.sk.passwordmanager.R;
 
-import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import Model.PasswordModel;
 
-/**
- * Created by Steffen on 22.06.2017.
- */
+import Model.PasswordModel;
 
 public class PasswordListAdapter extends BaseAdapter implements Filterable {
 
@@ -53,9 +49,9 @@ public class PasswordListAdapter extends BaseAdapter implements Filterable {
         if (convertView == null) {
             convertView = layoutInflater.inflate(R.layout.password_list_row_layout, null);
             holder = new PasswordListAdapter.ViewHolder();
-            holder.nameView = (TextView) convertView.findViewById(R.id.title);
-            holder.descriptionView = (TextView) convertView.findViewById(R.id.subtitle);
-            holder.addedView = (TextView) convertView.findViewById(R.id.righttext);
+            holder.nameView = convertView.findViewById(R.id.title);
+            holder.descriptionView = convertView.findViewById(R.id.subtitle);
+            holder.addedView = convertView.findViewById(R.id.righttext);
             convertView.setTag(holder);
         } else {
             holder = (PasswordListAdapter.ViewHolder) convertView.getTag();
@@ -94,7 +90,7 @@ public class PasswordListAdapter extends BaseAdapter implements Filterable {
             final List<PasswordModel> list = filterData;
 
             int count = list.size();
-            final ArrayList<PasswordModel> nlist = new ArrayList<PasswordModel>(count);
+            final ArrayList<PasswordModel> nlist = new ArrayList<>(count);
 
             for (int i = 0; i < count; i++) {
                 PasswordModel searchPassword = list.get(i);
@@ -119,7 +115,7 @@ public class PasswordListAdapter extends BaseAdapter implements Filterable {
 
     }
 
-    static class ViewHolder {
+    private static class ViewHolder {
         TextView nameView;
         TextView descriptionView;
         TextView addedView;

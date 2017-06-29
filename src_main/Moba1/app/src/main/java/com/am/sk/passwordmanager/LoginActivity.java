@@ -3,7 +3,6 @@ package com.am.sk.passwordmanager;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.KeyguardManager;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -16,17 +15,10 @@ import android.security.keystore.KeyProperties;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.text.InputType;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.SearchView;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -45,7 +37,6 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 
 import Handler.FingerprintHandler;
-
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -67,8 +58,10 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
 
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setIcon(R.drawable.ic_screen_lock_portrait_white_24dp);
+        if(getSupportActionBar() != null){
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+            getSupportActionBar().setIcon(R.drawable.ic_screen_lock_portrait_white_24dp);
+        }
 
         // If the SDKVersion is lower than 23, a verification is needed that the device is running Marshmallow
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

@@ -4,23 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-/**
- * Created by Steffen on 25.06.2017.
- */
-
 public class RandomTextGenerator {
 
-    public static String LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-    public static String NUMBERS = "1234567890";
-    public static String SPECIAL_CHARACTERS = "!+~,.-#()[]?/";
+    private static String NUMBERS;
+
+    static {
+        NUMBERS = "1234567890";
+    }
 
     public static String GenerateText(int length, boolean useLetters, boolean useNumbers, boolean useSpecialCharacters)
     {
-        List<Character> list = new ArrayList<Character>();
+        List<Character> list = new ArrayList<>();
 
         if(useLetters)
         {
 
+            String LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
             for(Character c : LETTERS.toCharArray())
             {
                 list.add(c);
@@ -37,6 +36,7 @@ public class RandomTextGenerator {
 
         if(useSpecialCharacters)
         {
+            String SPECIAL_CHARACTERS = "!+~,.-#()[]?/";
             for(Character c : SPECIAL_CHARACTERS.toCharArray())
             {
                 list.add(c);

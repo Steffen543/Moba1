@@ -1,9 +1,5 @@
 package Model;
 
-/**
- * Created by Steffen on 22.06.2017.
- */
-
 public class PasswordModel implements ISearchable {
     private int id;
     private String name;
@@ -45,7 +41,7 @@ public class PasswordModel implements ISearchable {
         return email;
     }
 
-    public void setEmail(String email) {
+    private void setEmail(String email) {
         this.email = email;
     }
 
@@ -53,7 +49,7 @@ public class PasswordModel implements ISearchable {
         return username;
     }
 
-    public void setUsername(String username) {
+    private void setUsername(String username) {
         this.username = username;
     }
 
@@ -69,7 +65,7 @@ public class PasswordModel implements ISearchable {
         return description;
     }
 
-    public void setDescription(String description) {
+    private void setDescription(String description) {
         this.description = description;
     }
 
@@ -77,7 +73,7 @@ public class PasswordModel implements ISearchable {
         return added;
     }
 
-    public void setAdded(String added) {
+    private void setAdded(String added) {
         this.added = added;
     }
 
@@ -85,7 +81,7 @@ public class PasswordModel implements ISearchable {
         return edited;
     }
 
-    public void setEdited(String edited) {
+    private void setEdited(String edited) {
         this.edited = edited;
     }
 
@@ -93,7 +89,7 @@ public class PasswordModel implements ISearchable {
         return parentId;
     }
 
-    public void setParentId(int parentId) {
+    private void setParentId(int parentId) {
         this.parentId = parentId;
     }
 

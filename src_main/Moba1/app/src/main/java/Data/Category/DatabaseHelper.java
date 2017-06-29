@@ -5,19 +5,15 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-/**
- * Created by Steffen on 23.06.2017.
- */
-
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    public class CATEGORY_TABLE
+    class CATEGORY_TABLE
     {
-        public static final String COLUMN_ID = "_id";
-        public static final String COLUMN_NAME = "name";
-        public static final String COLUMN_DESCRIPTION = "description";
-        public static final String COLUMN_ADDED= "added";
-        public static final String COLUMN_EDITED = "edited";
+        static final String COLUMN_ID = "_id";
+        static final String COLUMN_NAME = "name";
+        static final String COLUMN_DESCRIPTION = "description";
+        static final String COLUMN_ADDED= "added";
+        static final String COLUMN_EDITED = "edited";
     }
 
     public class PASSWORD_TABLE
@@ -34,15 +30,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     private static final String LOG_TAG = DatabaseHelper.class.getSimpleName();
-    public static final String DB_NAME = "passwordmanager.db";
-    public static final int DB_VERSION = 1;
+    private static final String DB_NAME = "passwordmanager.db";
+    private static final int DB_VERSION = 1;
 
-    public static final String TABLE_CATEGORIES = "categories";
+    static final String TABLE_CATEGORIES = "categories";
     public static final String TABLE_PASSWORDS = "passwords";
 
 
 
-    public static final String SQL_CREATE_CATEGORIES =
+    private static final String SQL_CREATE_CATEGORIES =
             "CREATE TABLE " + TABLE_CATEGORIES +
                     "(" + CATEGORY_TABLE.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     CATEGORY_TABLE.COLUMN_NAME + " TEXT NOT NULL, " +
@@ -50,7 +46,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     CATEGORY_TABLE.COLUMN_ADDED + " TEXT, " +
                     CATEGORY_TABLE.COLUMN_EDITED + " TEXT);";
 
-    public static final String SQL_CREATE_PASSWORDS =
+    private static final String SQL_CREATE_PASSWORDS =
             "CREATE TABLE " + TABLE_PASSWORDS +
                     "(" + PASSWORD_TABLE.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     PASSWORD_TABLE.COLUMN_NAME + " TEXT NOT NULL, " +

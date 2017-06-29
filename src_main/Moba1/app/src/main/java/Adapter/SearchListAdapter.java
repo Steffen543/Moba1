@@ -18,10 +18,6 @@ import Model.CategoryModel;
 import Model.ISearchable;
 import Model.PasswordModel;
 
-/**
- * Created by Steffen on 24.06.2017.
- */
-
 public class SearchListAdapter extends BaseAdapter implements Filterable {
     private List<ISearchable> listData;
     private List<ISearchable> filterData;
@@ -58,9 +54,9 @@ public class SearchListAdapter extends BaseAdapter implements Filterable {
         if(searchable instanceof PasswordModel) {
             convertView = layoutInflater.inflate(R.layout.password_list_row_layout, null);
             holder = new SearchListAdapter.ViewHolder();
-            holder.nameView = (TextView) convertView.findViewById(R.id.title);
-            holder.descriptionView = (TextView) convertView.findViewById(R.id.subtitle);
-            holder.addedView = (TextView) convertView.findViewById(R.id.righttext);
+            holder.nameView = convertView.findViewById(R.id.title);
+            holder.descriptionView = convertView.findViewById(R.id.subtitle);
+            holder.addedView = convertView.findViewById(R.id.righttext);
             PasswordModel password = (PasswordModel) searchable;
             holder.nameView.setText(password.getName());
 
@@ -76,9 +72,9 @@ public class SearchListAdapter extends BaseAdapter implements Filterable {
         else  if(searchable instanceof CategoryModel){
             convertView = layoutInflater.inflate(R.layout.category_list_row_layout, null);
             holder = new SearchListAdapter.ViewHolder();
-            holder.nameView = (TextView) convertView.findViewById(R.id.title);
-            holder.descriptionView = (TextView) convertView.findViewById(R.id.description);
-            holder.addedView = (TextView) convertView.findViewById(R.id.date);
+            holder.nameView = convertView.findViewById(R.id.title);
+            holder.descriptionView = convertView.findViewById(R.id.description);
+            holder.addedView = convertView.findViewById(R.id.date);
             CategoryModel category = (CategoryModel) searchable;
             holder.nameView.setText(category.getName());
             holder.descriptionView.setText(Math.round(category.getChildCount()) + " Einträge");
@@ -116,7 +112,7 @@ public class SearchListAdapter extends BaseAdapter implements Filterable {
             final List<ISearchable> list = filterData;
 
             int count = list.size();
-            final ArrayList<ISearchable> nlist = new ArrayList<ISearchable>(count);
+            final ArrayList<ISearchable> nlist = new ArrayList<>(count);
 
             for (int i = 0; i < count; i++) {
                 ISearchable searchObj = list.get(i);
@@ -141,7 +137,7 @@ public class SearchListAdapter extends BaseAdapter implements Filterable {
 
     }
 
-    static class ViewHolder {
+    private static class ViewHolder {
         TextView nameView;
         TextView descriptionView;
         TextView addedView;

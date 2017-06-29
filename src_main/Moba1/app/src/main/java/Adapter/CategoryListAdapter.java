@@ -1,7 +1,6 @@
 package Adapter;
 
 import android.content.Context;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,19 +8,13 @@ import android.widget.BaseAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.am.sk.passwordmanager.R;
 
-import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import Model.CategoryModel;
-
-/**
- * Created by Steffen on 22.06.2017.
- */
 
 public class CategoryListAdapter extends BaseAdapter implements Filterable {
 
@@ -56,9 +49,9 @@ public class CategoryListAdapter extends BaseAdapter implements Filterable {
         if (convertView == null) {
             convertView = layoutInflater.inflate(R.layout.category_list_row_layout, null);
             holder = new ViewHolder();
-            holder.nameView = (TextView) convertView.findViewById(R.id.title);
-            holder.descriptionView = (TextView) convertView.findViewById(R.id.description);
-            holder.addedView = (TextView) convertView.findViewById(R.id.date);
+            holder.nameView = convertView.findViewById(R.id.title);
+            holder.descriptionView = convertView.findViewById(R.id.description);
+            holder.addedView = convertView.findViewById(R.id.date);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -89,7 +82,7 @@ public class CategoryListAdapter extends BaseAdapter implements Filterable {
             final List<CategoryModel> list = filterData;
 
             int count = list.size();
-            final ArrayList<CategoryModel> nlist = new ArrayList<CategoryModel>(count);
+            final ArrayList<CategoryModel> nlist = new ArrayList<>(count);
 
             for (int i = 0; i < count; i++) {
                 CategoryModel searchCategory = list.get(i);
@@ -114,7 +107,7 @@ public class CategoryListAdapter extends BaseAdapter implements Filterable {
 
     }
 
-    static class ViewHolder {
+    private static class ViewHolder {
         TextView nameView;
         TextView descriptionView;
         TextView addedView;

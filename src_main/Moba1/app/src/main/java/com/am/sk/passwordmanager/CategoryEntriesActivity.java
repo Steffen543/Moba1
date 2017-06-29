@@ -1,10 +1,7 @@
 package com.am.sk.passwordmanager;
 
-import android.app.ActionBar;
-import android.content.ClipData;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
@@ -20,32 +17,22 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.SearchView;
-import android.widget.Toast;
 
 import java.util.List;
 
-import Adapter.CategoryListAdapter;
 import Adapter.PasswordListAdapter;
 import Data.Category.CategoryDataSource;
 import Data.Password.PasswordDataSource;
 import Model.CategoryModel;
-import Model.ISearchable;
 import Model.PasswordModel;
-
-/**
- * Created by Steffen on 22.06.2017.
- */
 
 public class CategoryEntriesActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener, AbsListView.MultiChoiceModeListener {
 
     private CategoryModel category;
     private CategoryDataSource categoryDataSource;
     private PasswordDataSource passwordDataSource;
-    private PasswordListAdapter passwordAdapter;
     private ListView passwordListView;
     private int counterSelections = 0;
     public static final String LOG_TAG = CategoryEntriesActivity.class.getSimpleName();
@@ -72,6 +59,7 @@ public class CategoryEntriesActivity extends AppCompatActivity implements View.O
         addPasswordButton.setOnClickListener(this);
 
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         initView();
@@ -83,12 +71,13 @@ public class CategoryEntriesActivity extends AppCompatActivity implements View.O
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.activity_category_menu, menu);
-
+        /*
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             //SearchManager manager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
             //SearchView search = (SearchView) menu.findItem(R.id.menuSearch).getActionView();
             //search.setOnQueryTextListener(this);
         }
+        */
         return true;
     }
 
@@ -114,7 +103,7 @@ public class CategoryEntriesActivity extends AppCompatActivity implements View.O
         setTitle(category.getName());
 
         List<PasswordModel> passwords = passwordDataSource.getAllPasswords(category.getId());
-        passwordAdapter = new PasswordListAdapter(this, passwords);
+        PasswordListAdapter passwordAdapter = new PasswordListAdapter(this, passwords);
         passwordListView.setAdapter(passwordAdapter);
         passwordListView.setOnItemClickListener(this);
     }
@@ -178,7 +167,7 @@ public class CategoryEntriesActivity extends AppCompatActivity implements View.O
         addPasswordDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final EditText editTextName = (EditText) dialogsView.findViewById(R.id.add_password_name);
+                final EditText editTextName = dialogsView.findViewById(R.id.add_password_name);
                 String newName = editTextName.getText().toString();
 
                 if (!TextUtils.isEmpty(newName)) {
@@ -194,9 +183,11 @@ public class CategoryEntriesActivity extends AppCompatActivity implements View.O
             }
         });
 
-        EditText editTextName = (EditText) dialogsView.findViewById(R.id.add_password_name);
+        EditText editTextName = dialogsView.findViewById(R.id.add_password_name);
         if(editTextName.requestFocus()) {
-            addPasswordDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+            if (addPasswordDialog.getWindow() != null) {
+                addPasswordDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+            }
         }
     }
 

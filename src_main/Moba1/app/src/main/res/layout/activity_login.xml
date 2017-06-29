@@ -15,12 +15,12 @@
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:hint="Password" />
+        android:hint="@string/hint_password" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login"
+        android:text="@string/text_login"
         android:id="@+id/loginButton"
         android:layout_centerInParent="true"
         android:layout_centerHorizontal="true"

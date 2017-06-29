@@ -12,9 +12,6 @@ import android.widget.Toast;
 
 import com.am.sk.passwordmanager.LoginActivity;
 
-/**
- * Created by Steffen on 25.06.2017.
- */
 @RequiresApi(api = Build.VERSION_CODES.M)
 public class FingerprintHandler extends FingerprintManager.AuthenticationCallback{
 

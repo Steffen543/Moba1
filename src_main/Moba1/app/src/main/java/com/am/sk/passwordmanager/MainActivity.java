@@ -1,13 +1,11 @@
 package com.am.sk.passwordmanager;
 
-import android.app.ActionBar;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.SparseBooleanArray;
@@ -22,7 +20,6 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,9 +56,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         addCategoryButton.setOnClickListener(this);
 
 
-
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setIcon(R.drawable.ic_screen_lock_portrait_white_24dp);
+        if(getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+            getSupportActionBar().setIcon(R.drawable.ic_screen_lock_portrait_white_24dp);
+        }
 
         initializeContextualActionBar();
 
@@ -72,12 +70,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.activity_main_menu, menu);
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            //SearchManager manager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-            SearchView search = (SearchView) menu.findItem(R.id.menuSearch).getActionView();
-            search.setOnCloseListener(this);
-            search.setOnQueryTextListener(this);
-        }
+        //SearchManager manager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView search = (SearchView) menu.findItem(R.id.menuSearch).getActionView();
+        search.setOnCloseListener(this);
+        search.setOnQueryTextListener(this);
         return true;
     }
 
@@ -149,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         List<CategoryModel> categories = categoryDataSource.getAllCategories();
         List<PasswordModel> passwords = passwordDataSource.getAllPasswords();
 
-        List<ISearchable> searchables = new ArrayList<ISearchable>();
+        List<ISearchable> searchables = new ArrayList<>();
 
         for(PasswordModel pwd : passwords)
             searchables.add(pwd);
@@ -178,7 +174,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         addCategoryDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final EditText editTextName = (EditText) dialogsView.findViewById(R.id.add_category_name);
+                final EditText editTextName = dialogsView.findViewById(R.id.add_category_name);
                 String newName = editTextName.getText().toString();
 
                 if (!TextUtils.isEmpty(newName)) {
@@ -189,9 +185,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         });
 
-        EditText editTextName = (EditText) dialogsView.findViewById(R.id.add_category_name);
+        EditText editTextName = dialogsView.findViewById(R.id.add_category_name);
         if(editTextName.requestFocus()) {
-            addCategoryDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+            if (addCategoryDialog.getWindow() != null) {
+                addCategoryDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+            }
         }
 
 
@@ -294,7 +292,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public boolean onClose() {
-        categoryListView.setAdapter(categoryAdapter);;
+        categoryListView.setAdapter(categoryAdapter);
         return false;
     }
 }

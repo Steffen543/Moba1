@@ -1,12 +1,6 @@
 package Model;
 
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.Date;
-
-/**
- * Created by Steffen on 22.06.2017.
- */
 
 public class CategoryModel implements Serializable, ISearchable {
     private int id;
@@ -40,7 +34,7 @@ public class CategoryModel implements Serializable, ISearchable {
         return description;
     }
 
-    public void setDescription(String description) {
+    private void setDescription(String description) {
         this.description = description;
     }
 
@@ -48,7 +42,7 @@ public class CategoryModel implements Serializable, ISearchable {
         return added;
     }
 
-    public void setAdded(String added) {
+    private void setAdded(String added) {
         this.added = added;
     }
 
@@ -56,7 +50,7 @@ public class CategoryModel implements Serializable, ISearchable {
         return edited;
     }
 
-    public void setEdited(String edited) {
+    private void setEdited(String edited) {
         this.edited = edited;
     }
 

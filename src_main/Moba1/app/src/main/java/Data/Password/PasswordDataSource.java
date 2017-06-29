@@ -13,10 +13,6 @@ import java.util.List;
 import Data.Category.DatabaseHelper;
 import Model.PasswordModel;
 
-/**
- * Created by Steffen on 24.06.2017.
- */
-
 public class PasswordDataSource {
     private static final String LOG_TAG = PasswordDataSource.class.getSimpleName();
 
@@ -74,8 +70,7 @@ public class PasswordDataSource {
         String edited = cursor.getString(idEdited);
         int parentId = cursor.getInt(idParentId);
 
-        PasswordModel passwordModel = new PasswordModel(id, name, email, username, password, description, added, edited, parentId);
-        return passwordModel;
+        return new PasswordModel(id, name, email, username, password, description, added, edited, parentId);
 
     }
 
@@ -112,10 +107,7 @@ public class PasswordDataSource {
         cursor.moveToFirst();
         PasswordModel password;
 
-        if(cursor == null)
-            return null;
-
-        while(!cursor.isAfterLast()) {
+        if(!cursor.isAfterLast()) {
 
             password = cursorToPasswordModel(cursor);
             cursor.close();

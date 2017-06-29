@@ -10,14 +10,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import Data.Category.CategoryDataSource;
 import Model.CategoryModel;
-
-/**
- * Created by Steffen on 23.06.2017.
- */
 
 public class EditCategoryActivity extends AppCompatActivity {
 
@@ -40,6 +35,7 @@ public class EditCategoryActivity extends AppCompatActivity {
         category = (CategoryModel) i.getSerializableExtra("category");
 
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
 

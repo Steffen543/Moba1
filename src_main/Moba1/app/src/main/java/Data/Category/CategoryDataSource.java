@@ -13,10 +13,6 @@ import java.util.List;
 
 import Model.CategoryModel;
 
-/**
- * Created by Steffen on 23.06.2017.
- */
-
 public class CategoryDataSource {
 
     private static final String LOG_TAG = CategoryDataSource.class.getSimpleName();
@@ -63,9 +59,7 @@ public class CategoryDataSource {
         String added = cursor.getString(idAdded);
         String edited = cursor.getString(idEdited);
 
-        CategoryModel category = new CategoryModel(id, name, description, added, edited);
-
-        return category;
+        return new CategoryModel(id, name, description, added, edited);
     }
 
     public CategoryModel createCategoryModel(String name, String description) {
@@ -98,9 +92,9 @@ public class CategoryDataSource {
                 columns, " _id = ?", new String[] {String.valueOf(id)}, null, null, null);
 
         cursor.moveToFirst();
-        CategoryModel category = null;
+        CategoryModel category;
 
-        while(!cursor.isAfterLast()) {
+        if(!cursor.isAfterLast()) {
 
             category = cursorToCategoryModel(cursor);
             cursor.close();
