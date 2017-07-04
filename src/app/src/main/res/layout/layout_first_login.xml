@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Choose a master password"
+        android:text="Wählen Sie ihr Passwort"
         android:layout_centerHorizontal="true"
         android:layout_above="@+id/password"
         android:id="@+id/textView" />
@@ -26,7 +26,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:imeOptions="actionNext"
-        android:hint="Password" />
+        android:hint="Passwort" />
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -39,11 +39,11 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:imeOptions="actionDone"
-        android:hint="Confirm Password" />
+        android:hint="Passwort wiederholen" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save"
+        android:text="Speichern"
         android:id="@+id/save"
         android:layout_centerInParent="true"
         android:layout_centerHorizontal="true"

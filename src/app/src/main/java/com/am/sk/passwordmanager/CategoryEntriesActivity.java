@@ -1,7 +1,5 @@
 package com.am.sk.passwordmanager;
 
-import android.app.ActionBar;
-import android.content.ClipData;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
@@ -20,20 +18,15 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.SearchView;
-import android.widget.Toast;
 
 import java.util.List;
 
-import Adapter.CategoryListAdapter;
 import Adapter.PasswordListAdapter;
-import Data.Category.CategoryDataSource;
-import Data.Password.PasswordDataSource;
+import Data.CategoryDataSource;
+import Data.PasswordDataSource;
 import Model.CategoryModel;
-import Model.ISearchable;
 import Model.PasswordModel;
 
 /**

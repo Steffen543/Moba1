@@ -1,4 +1,4 @@
-package Data.Category;
+package Data;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

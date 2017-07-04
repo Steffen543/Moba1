@@ -10,9 +10,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import Data.Category.CategoryDataSource;
+import Data.CategoryDataSource;
 import Model.CategoryModel;
 
 /**
