@@ -70,7 +70,8 @@ public class LoginActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setIcon(R.drawable.ic_screen_lock_portrait_white_24dp);
 
-        // If the SDKVersion is lower than 23, a verification is needed that the device is running Marshmallow
+        // If the SDKVersion is lower than 23,
+        // a verification is needed that the device is running Marshmallow
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             KeyguardManager keyguardManager = (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
             fingerprintManager = (FingerprintManager) getSystemService(FINGERPRINT_SERVICE);
@@ -80,7 +81,8 @@ public class LoginActivity extends AppCompatActivity {
                 PasswordSetCheck();
             }
 
-            if(ActivityCompat.checkSelfPermission(this, Manifest.permission.USE_FINGERPRINT) != PackageManager.PERMISSION_GRANTED){
+            if(ActivityCompat.checkSelfPermission(this, Manifest.permission.USE_FINGERPRINT)
+                    != PackageManager.PERMISSION_GRANTED){
                 // If the user isn't getting us the permission for his fingerprintsensor
                 PasswordSetCheck();
             }
@@ -143,10 +145,12 @@ public class LoginActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void generateKey() throws FingerprintException{
         try{
-            // Obtain a reference to the Keystore using the standard Android keystore container identifier (“AndroidKeystore”)
+            // Obtain a reference to the Keystore using the standard
+            // Android keystore container identifier (“AndroidKeystore”)
             keyStore = KeyStore.getInstance("AndroidKeyStore");
             // Generate the key
-            KeyGenerator keyGenerator = KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES, "AndroidKeyStore");
+            KeyGenerator keyGenerator =
+                    KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES, "AndroidKeyStore");
             // Initialization of a empty KeyStore
             keyStore.load(null);
             // Initialization of the KeyGenerator

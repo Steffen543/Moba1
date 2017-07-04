@@ -1,9 +1,5 @@
 package Model;
 
-/**
- * Created by Steffen on 22.06.2017.
- */
-
 public class PasswordModel implements ISearchable {
     private int id;
     private String name;

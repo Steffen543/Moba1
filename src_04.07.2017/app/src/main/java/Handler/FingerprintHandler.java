@@ -12,13 +12,12 @@ import android.widget.Toast;
 
 import com.am.sk.passwordmanager.LoginActivity;
 
-/**
- * Created by Steffen on 25.06.2017.
- */
 @RequiresApi(api = Build.VERSION_CODES.M)
 public class FingerprintHandler extends FingerprintManager.AuthenticationCallback{
 
-    // The CancellationSignal should be used whenever the app can't process user input, like when it goes into background
+    // The CancellationSignal should be used whenever the app can't process user input,
+    // like when it goes into background
+
     // When you don't do this other apps can't use the fingerprintsensor, even the lockscreen
     public CancellationSignal cancellationSignal;
     private Context context;
@@ -28,10 +27,12 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
         context = mContext;
     }
 
-    public void startAuth(FingerprintManager manager, FingerprintManager.CryptoObject cryptoObject, LoginActivity main){
+    public void startAuth(FingerprintManager manager, FingerprintManager.CryptoObject cryptoObject,
+                          LoginActivity main){
         mainActivity = main;
         cancellationSignal = new CancellationSignal();
-        if(ActivityCompat.checkSelfPermission(context, Manifest.permission.USE_FINGERPRINT) != PackageManager.PERMISSION_GRANTED){
+        if(ActivityCompat.checkSelfPermission(context, Manifest.permission.USE_FINGERPRINT)
+                != PackageManager.PERMISSION_GRANTED){
             return;
         }
         manager.authenticate(cryptoObject, cancellationSignal, 0, this, null);

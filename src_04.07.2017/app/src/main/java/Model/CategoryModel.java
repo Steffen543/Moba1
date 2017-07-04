@@ -4,10 +4,6 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 
-/**
- * Created by Steffen on 22.06.2017.
- */
-
 public class CategoryModel implements Serializable, ISearchable {
     private int id;
     private String name;
