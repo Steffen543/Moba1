@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" >
+    <ImageView
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_fingerprint_black_24dp"
+        android:contentDescription="FingerprintIcon"
+        android:scaleType="fitXY"
+        android:adjustViewBounds="true"
+        android:id="@+id/fingerprint"
+        android:layout_centerInParent="true" />
+    <TextView
+        android:id="@+id/fingerprint_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/fingerprint"
+        android:text="Fingerabdruck Authentifizierung" />
+    <TextView
+        android:id="@+id/fingerprint_instruction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fingerprint"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:text="Platzieren Sie ihren Finger auf dem Sensor um sich einzuloggen!"/>
+    <Button
+        android:id="@+id/change_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fingerprint_instruction"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:text="Mit Passwort entsperren"/>
+</RelativeLayout>
