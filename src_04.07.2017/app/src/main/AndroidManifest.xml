@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.am.sk.passwordmanager">
+
+    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity" android:icon="@drawable/ic_screen_lock_portrait_white_24dp">
+            <intent-filter>
+                <action android:name="android.intent.action.ALL_APPS"/>
+                <category android:name="android.intent.category.ALTERNATIVE"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".CategoryEntriesActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.ALL_APPS"/>
+                <category android:name="android.intent.category.ALTERNATIVE"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".EditCategoryActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.ALL_APPS"/>
+                <category android:name="android.intent.category.ALTERNATIVE"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".EditPasswordActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.ALL_APPS"/>
+                <category android:name="android.intent.category.ALTERNATIVE"/>
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
