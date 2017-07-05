@@ -160,7 +160,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     private void showAddDialog()  {
-        android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
         final View dialogsView = getLayoutInflater().inflate(R.layout.dialog_add_category, null);
         builder.setView(dialogsView);
         builder.setTitle("Kategorie hinzufügen");
@@ -172,12 +172,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 dialog.dismiss();
             }
         });
-        final android.support.v7.app.AlertDialog addCategoryDialog = builder.create();
+        final AlertDialog addCategoryDialog = builder.create();
         addCategoryDialog.show();
         addCategoryDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final EditText editTextName = (EditText) dialogsView.findViewById(R.id.add_category_name);
+                final EditText editTextName = (EditText) dialogsView.
+                        findViewById(R.id.add_category_name);
                 String newName = editTextName.getText().toString();
 
                 if (!TextUtils.isEmpty(newName)) {
@@ -187,13 +188,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 }
             }
         });
-
         EditText editTextName = (EditText) dialogsView.findViewById(R.id.add_category_name);
         if(editTextName.requestFocus()) {
-            addCategoryDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CUPCAKE) {
+                addCategoryDialog.getWindow().
+                        setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+            }
         }
-
-
     }
 
     private void initializeContextualActionBar()  {
