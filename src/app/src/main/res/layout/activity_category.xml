@@ -4,13 +4,33 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent">
 
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/passwordListView"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
+        <RelativeLayout
+            android:id="@+id/categoryInfoPanel"
+            android:background="@drawable/categorydescriptionborder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_margin="7dp"
+                android:layout_width="match_parent"
+                android:id="@+id/textViewCategoryDescription"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/passwordListView"
+
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true" />
+    </LinearLayout>
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/buttonAddPassword"
         android:layout_width="wrap_content"

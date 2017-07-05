@@ -20,6 +20,7 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -43,6 +44,7 @@ public class CategoryEntriesActivity extends AppCompatActivity implements View.O
     private int counterSelections = 0;
     public static final String LOG_TAG = CategoryEntriesActivity.class.getSimpleName();
     private ActionMode _actionMode;
+    TextView descriptionTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,11 +56,13 @@ public class CategoryEntriesActivity extends AppCompatActivity implements View.O
         passwordDataSource = new PasswordDataSource(this);
         passwordListView = (ListView) findViewById(R.id.passwordListView);
 
+
         Intent i = getIntent();
         int categoryId =  Integer.parseInt(i.getStringExtra("categoryid"));
         categoryDataSource.open();
         passwordDataSource.open();
 
+        descriptionTextView = (TextView) findViewById(R.id.textViewCategoryDescription);
         category = categoryDataSource.getCategory(categoryId);
 
         FloatingActionButton addPasswordButton = (FloatingActionButton) findViewById(R.id.buttonAddPassword);
@@ -105,6 +109,7 @@ public class CategoryEntriesActivity extends AppCompatActivity implements View.O
     private void initView()
     {
         setTitle(category.getName());
+        descriptionTextView.setText(category.getDescription());
 
         List<PasswordModel> passwords = passwordDataSource.getAllPasswords(category.getId());
         passwordAdapter = new PasswordListAdapter(this, passwords);
