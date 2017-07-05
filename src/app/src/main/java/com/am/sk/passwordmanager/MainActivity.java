@@ -59,7 +59,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setIcon(R.drawable.ic_screen_lock_portrait_white_24dp);
+        //getSupportActionBar().setIcon(R.drawable.ic_screen_lock_portrait_white_24dp);
+        getSupportActionBar().setIcon(R.mipmap.ic_launcher_sec);
 
         initializeContextualActionBar();
 

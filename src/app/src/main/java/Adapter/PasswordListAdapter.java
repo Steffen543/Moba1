@@ -16,9 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 import Model.PasswordModel;
 
-/**
- * Created by Steffen on 22.06.2017.
- */
 
 public class PasswordListAdapter extends BaseAdapter implements Filterable {
 

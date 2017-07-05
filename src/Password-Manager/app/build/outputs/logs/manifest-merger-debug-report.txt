@@ -1,0 +1,113 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\Users\Steffen\Documents\GitHub\Moba1\src\Password-Manager\app\src\main\AndroidManifest.xml:2:1-30:12
+	package
+		ADDED from C:\Users\Steffen\Documents\GitHub\Moba1\src\Password-Manager\app\src\main\AndroidManifest.xml:3:5-55
+		INJECTED from C:\Users\Steffen\Documents\GitHub\Moba1\src\Password-Manager\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Steffen\Documents\GitHub\Moba1\src\Password-Manager\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\Users\Steffen\Documents\GitHub\Moba1\src\Password-Manager\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Steffen\Documents\GitHub\Moba1\src\Password-Manager\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\Steffen\Documents\GitHub\Moba1\src\Password-Manager\app\src\main\AndroidManifest.xml:2:11-69
+	android:versionCode
+		INJECTED from C:\Users\Steffen\Documents\GitHub\Moba1\src\Password-Manager\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Steffen\Documents\GitHub\Moba1\src\Password-Manager\app\src\main\AndroidManifest.xml
+uses-permission#android.permission.USE_FINGERPRINT
+ADDED from C:\Users\Steffen\Documents\GitHub\Moba1\src\Password-Manager\app\src\main\AndroidManifest.xml:5:5-74
+	android:name
+		ADDED from C:\Users\Steffen\Documents\GitHub\Moba1\src\Password-Manager\app\src\main\AndroidManifest.xml:5:22-71
+application
+ADDED from C:\Users\Steffen\Documents\GitHub\Moba1\src\Password-Manager\app\src\main\AndroidManifest.xml:6:5-28:19
+MERGED from [com.android.support:design:25.3.1] C:\Users\Steffen\.android\build-cache\32e035fd2ca0b8d70d03c3b757dfdd9f87e946d0\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:appcompat-v7:25.3.1] C:\Users\Steffen\.android\build-cache\1ed779845cd71ef6ae98f06c1c7ed480695f7677\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\Steffen\.android\build-cache\3dea8d3689fcb8101ec3dce0b509f2968c616686\output\AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\Steffen\.android\build-cache\9d02a0fa0d4a9c56eea7815ea5dbc638cf4f95bc\output\AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:transition:25.3.1] C:\Users\Steffen\.android\build-cache\3a1a9af7b40e49409dd49b5da4f013c9ea38a481\output\AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-v4:25.3.1] C:\Users\Steffen\.android\build-cache\7ce09813ef728951702bbdced73db11488e173cf\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-fragment:25.3.1] C:\Users\Steffen\.android\build-cache\f113ac41fc0d6cd6dd7d5a0465b5e06ac56819c7\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\Steffen\.android\build-cache\f7f0ea61ebd13ed184b0d28b1da98e8dc2b6109a\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-ui:25.3.1] C:\Users\Steffen\.android\build-cache\fb14a1453c89e9cacf7dc4b9060acd3ed5df9d44\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\Steffen\.android\build-cache\51da108c1d140446421044dac2285b169518bf16\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-compat:25.3.1] C:\Users\Steffen\.android\build-cache\e831784c3f0c70520ab1164fd17d9d7ef4252b4c\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Steffen\.android\build-cache\3a501c398be73c3f1f61bd04431bc996cf53d23f\output\AndroidManifest.xml:9:5-20
+	android:label
+		ADDED from C:\Users\Steffen\Documents\GitHub\Moba1\src\Password-Manager\app\src\main\AndroidManifest.xml:9:9-41
+	android:supportsRtl
+		ADDED from C:\Users\Steffen\Documents\GitHub\Moba1\src\Password-Manager\app\src\main\AndroidManifest.xml:11:9-35
+	android:roundIcon
+		ADDED from C:\Users\Steffen\Documents\GitHub\Moba1\src\Password-Manager\app\src\main\AndroidManifest.xml:10:9-54
+	android:allowBackup
+		ADDED from C:\Users\Steffen\Documents\GitHub\Moba1\src\Password-Manager\app\src\main\AndroidManifest.xml:7:9-35
+	android:icon
+		ADDED from C:\Users\Steffen\Documents\GitHub\Moba1\src\Password-Manager\app\src\main\AndroidManifest.xml:8:9-43
+	android:theme
+		ADDED from C:\Users\Steffen\Documents\GitHub\Moba1\src\Password-Manager\app\src\main\AndroidManifest.xml:12:9-40
+uses-feature#android.hardware.fingerprint
+ADDED from C:\Users\Steffen\Documents\GitHub\Moba1\src\Password-Manager\app\src\main\AndroidManifest.xml:13:9-14:40
+	android:required
+		ADDED from C:\Users\Steffen\Documents\GitHub\Moba1\src\Password-Manager\app\src\main\AndroidManifest.xml:14:13-37
+	android:name
+		ADDED from C:\Users\Steffen\Documents\GitHub\Moba1\src\Password-Manager\app\src\main\AndroidManifest.xml:13:23-66
+activity#com.hs_weingarten.sk.am.password_manager.MainActivity
+ADDED from C:\Users\Steffen\Documents\GitHub\Moba1\src\Password-Manager\app\src\main\AndroidManifest.xml:17:9-23:20
+	android:name
+		ADDED from C:\Users\Steffen\Documents\GitHub\Moba1\src\Password-Manager\app\src\main\AndroidManifest.xml:17:19-47
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from C:\Users\Steffen\Documents\GitHub\Moba1\src\Password-Manager\app\src\main\AndroidManifest.xml:18:13-22:29
+action#android.intent.action.MAIN
+ADDED from C:\Users\Steffen\Documents\GitHub\Moba1\src\Password-Manager\app\src\main\AndroidManifest.xml:19:17-69
+	android:name
+		ADDED from C:\Users\Steffen\Documents\GitHub\Moba1\src\Password-Manager\app\src\main\AndroidManifest.xml:19:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\Steffen\Documents\GitHub\Moba1\src\Password-Manager\app\src\main\AndroidManifest.xml:21:17-77
+	android:name
+		ADDED from C:\Users\Steffen\Documents\GitHub\Moba1\src\Password-Manager\app\src\main\AndroidManifest.xml:21:27-74
+activity#com.hs_weingarten.sk.am.password_manager.FormActivity
+ADDED from C:\Users\Steffen\Documents\GitHub\Moba1\src\Password-Manager\app\src\main\AndroidManifest.xml:24:9-27:68
+	android:label
+		ADDED from C:\Users\Steffen\Documents\GitHub\Moba1\src\Password-Manager\app\src\main\AndroidManifest.xml:26:13-56
+	android:theme
+		ADDED from C:\Users\Steffen\Documents\GitHub\Moba1\src\Password-Manager\app\src\main\AndroidManifest.xml:27:13-56
+	android:name
+		ADDED from C:\Users\Steffen\Documents\GitHub\Moba1\src\Password-Manager\app\src\main\AndroidManifest.xml:25:13-41
+uses-sdk
+INJECTED from C:\Users\Steffen\Documents\GitHub\Moba1\src\Password-Manager\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+MERGED from [com.android.support:design:25.3.1] C:\Users\Steffen\.android\build-cache\32e035fd2ca0b8d70d03c3b757dfdd9f87e946d0\output\AndroidManifest.xml:21:5-23:62
+MERGED from [com.android.support:appcompat-v7:25.3.1] C:\Users\Steffen\.android\build-cache\1ed779845cd71ef6ae98f06c1c7ed480695f7677\output\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\Steffen\.android\build-cache\3dea8d3689fcb8101ec3dce0b509f2968c616686\output\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\Steffen\.android\build-cache\9d02a0fa0d4a9c56eea7815ea5dbc638cf4f95bc\output\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:recyclerview-v7:25.3.1] C:\Users\Steffen\.android\build-cache\2e5458e3f72d7a48ac606ff8f0a74c89744cbb9b\output\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:transition:25.3.1] C:\Users\Steffen\.android\build-cache\3a1a9af7b40e49409dd49b5da4f013c9ea38a481\output\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:25.3.1] C:\Users\Steffen\.android\build-cache\7ce09813ef728951702bbdced73db11488e173cf\output\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-fragment:25.3.1] C:\Users\Steffen\.android\build-cache\f113ac41fc0d6cd6dd7d5a0465b5e06ac56819c7\output\AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\Steffen\.android\build-cache\f7f0ea61ebd13ed184b0d28b1da98e8dc2b6109a\output\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-core-ui:25.3.1] C:\Users\Steffen\.android\build-cache\fb14a1453c89e9cacf7dc4b9060acd3ed5df9d44\output\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\Steffen\.android\build-cache\51da108c1d140446421044dac2285b169518bf16\output\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-compat:25.3.1] C:\Users\Steffen\.android\build-cache\e831784c3f0c70520ab1164fd17d9d7ef4252b4c\output\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Steffen\.android\build-cache\3a501c398be73c3f1f61bd04431bc996cf53d23f\output\AndroidManifest.xml:5:5-7:41
+	tools:overrideLibrary
+		ADDED from [com.android.support:design:25.3.1] C:\Users\Steffen\.android\build-cache\32e035fd2ca0b8d70d03c3b757dfdd9f87e946d0\output\AndroidManifest.xml:23:9-59
+	android:targetSdkVersion
+		INJECTED from C:\Users\Steffen\Documents\GitHub\Moba1\src\Password-Manager\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Steffen\Documents\GitHub\Moba1\src\Password-Manager\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\Users\Steffen\Documents\GitHub\Moba1\src\Password-Manager\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Steffen\Documents\GitHub\Moba1\src\Password-Manager\app\src\main\AndroidManifest.xml
+meta-data#android.support.VERSION
+ADDED from [com.android.support:design:25.3.1] C:\Users\Steffen\.android\build-cache\32e035fd2ca0b8d70d03c3b757dfdd9f87e946d0\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:appcompat-v7:25.3.1] C:\Users\Steffen\.android\build-cache\1ed779845cd71ef6ae98f06c1c7ed480695f7677\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\Steffen\.android\build-cache\3dea8d3689fcb8101ec3dce0b509f2968c616686\output\AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\Steffen\.android\build-cache\9d02a0fa0d4a9c56eea7815ea5dbc638cf4f95bc\output\AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:recyclerview-v7:25.3.1] C:\Users\Steffen\.android\build-cache\2e5458e3f72d7a48ac606ff8f0a74c89744cbb9b\output\AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:transition:25.3.1] C:\Users\Steffen\.android\build-cache\3a1a9af7b40e49409dd49b5da4f013c9ea38a481\output\AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-v4:25.3.1] C:\Users\Steffen\.android\build-cache\7ce09813ef728951702bbdced73db11488e173cf\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-fragment:25.3.1] C:\Users\Steffen\.android\build-cache\f113ac41fc0d6cd6dd7d5a0465b5e06ac56819c7\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\Steffen\.android\build-cache\f7f0ea61ebd13ed184b0d28b1da98e8dc2b6109a\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-ui:25.3.1] C:\Users\Steffen\.android\build-cache\fb14a1453c89e9cacf7dc4b9060acd3ed5df9d44\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\Steffen\.android\build-cache\51da108c1d140446421044dac2285b169518bf16\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-compat:25.3.1] C:\Users\Steffen\.android\build-cache\e831784c3f0c70520ab1164fd17d9d7ef4252b4c\output\AndroidManifest.xml:25:5-27:34
+	android:value
+		ADDED from [com.android.support:design:25.3.1] C:\Users\Steffen\.android\build-cache\32e035fd2ca0b8d70d03c3b757dfdd9f87e946d0\output\AndroidManifest.xml:27:9-31
+	android:name
+		ADDED from [com.android.support:design:25.3.1] C:\Users\Steffen\.android\build-cache\32e035fd2ca0b8d70d03c3b757dfdd9f87e946d0\output\AndroidManifest.xml:26:9-47

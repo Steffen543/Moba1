@@ -18,9 +18,6 @@ import Model.CategoryModel;
 import Model.ISearchable;
 import Model.PasswordModel;
 
-/**
- * Created by Steffen on 24.06.2017.
- */
 
 public class SearchListAdapter extends BaseAdapter implements Filterable {
     private List<ISearchable> listData;

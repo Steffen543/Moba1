@@ -19,11 +19,10 @@ import java.util.List;
 
 import Model.CategoryModel;
 
-/**
- * Created by Steffen on 22.06.2017.
- */
 
-public class CategoryListAdapter extends BaseAdapter implements Filterable {
+
+public class CategoryListAdapter
+        extends BaseAdapter implements Filterable {
 
     private List<CategoryModel> listData;
     private List<CategoryModel> filterData;
@@ -57,7 +56,7 @@ public class CategoryListAdapter extends BaseAdapter implements Filterable {
             convertView = layoutInflater.inflate(R.layout.category_list_row_layout, null);
             holder = new ViewHolder();
             holder.nameView = (TextView) convertView.findViewById(R.id.title);
-            holder.descriptionView = (TextView) convertView.findViewById(R.id.description);
+            holder.childrenView = (TextView) convertView.findViewById(R.id.description);
             holder.addedView = (TextView) convertView.findViewById(R.id.date);
             convertView.setTag(holder);
         } else {
@@ -67,7 +66,7 @@ public class CategoryListAdapter extends BaseAdapter implements Filterable {
         CategoryModel category = listData.get(i);
 
         holder.nameView.setText(category.getName());
-        holder.descriptionView.setText(Math.round(category.getChildCount()) + " Einträge");
+        holder.childrenView.setText(Math.round(category.getChildCount()) + " Einträge");
         holder.addedView.setText(category.getAdded().substring(0,10));
         return convertView;
     }
@@ -81,27 +80,19 @@ public class CategoryListAdapter extends BaseAdapter implements Filterable {
     private class ItemFilter extends Filter {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
-
             String filterString = constraint.toString().toLowerCase();
-
             FilterResults results = new FilterResults();
-
             final List<CategoryModel> list = filterData;
-
             int count = list.size();
             final ArrayList<CategoryModel> nlist = new ArrayList<CategoryModel>(count);
-
             for (int i = 0; i < count; i++) {
                 CategoryModel searchCategory = list.get(i);
                 if (searchCategory.getName().toLowerCase().contains(filterString)) {
                     nlist.add(searchCategory);
-                    System.out.println(searchCategory.getName() + " gefunden mit " + filterString);
                 }
             }
-
             results.values = nlist;
             results.count = nlist.size();
-
             return results;
         }
 
@@ -116,7 +107,7 @@ public class CategoryListAdapter extends BaseAdapter implements Filterable {
 
     static class ViewHolder {
         TextView nameView;
-        TextView descriptionView;
+        TextView childrenView;
         TextView addedView;
     }
 }

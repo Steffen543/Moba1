@@ -59,8 +59,14 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.activity_login_menu, menu);
+
+        if(hasFingerprintEnabled())
+        {
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.activity_login_menu, menu);
+        }
+
+
 
 
         return true;
@@ -114,9 +120,9 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
         else return false;
-
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -124,7 +130,8 @@ public class LoginActivity extends AppCompatActivity {
 
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setIcon(R.drawable.ic_screen_lock_portrait_white_24dp);
+        //getSupportActionBar().setIcon(R.drawable.ic_screen_lock_portrait_white_24dp);
+        getSupportActionBar().setIcon(R.mipmap.ic_launcher_sec);
 
         if(hasFingerprintEnabled())
         {
@@ -136,7 +143,6 @@ public class LoginActivity extends AppCompatActivity {
                 generateKey();
             } catch (FingerprintException e){
                 e.printStackTrace();
-                System.out.println("@@@@@@@@@@@@@ERROR@@@@@@@@@@@");
             }
 
             if(initCipher()){
@@ -179,7 +185,11 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onResume(){
         // needed to restart the fingerprintsensor
-        helper.startAuth(fingerprintManager, cryptoObject, this);
+        if(hasFingerprintEnabled())
+        {
+            helper.startAuth(fingerprintManager, cryptoObject, this);
+        }
+
         super.onResume();
     }
 
