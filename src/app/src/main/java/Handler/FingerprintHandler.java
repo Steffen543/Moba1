@@ -51,12 +51,13 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
 
     // non-fatal error has occurred
     public void onAuthenticationHelp(int helpMsgId, CharSequence helpString){
-        Toast.makeText(context, "Authentication help\n" + helpString, Toast.LENGTH_LONG).show();
+        //Toast.makeText(context, "Authentication help\n" + helpString, Toast.LENGTH_LONG).show();
+        System.out.println("AuthenticationHelp: " + helpString);
     }
 
     // authentication success
     public void onAuthenticationSucceeded(FingerprintManager.AuthenticationResult result){
         mainActivity.LoginComplete();
-        Toast.makeText(context, "Authentifizierung erfolgreich", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "Herzlich Willkommen bei Athene", Toast.LENGTH_SHORT).show();
     }
 }

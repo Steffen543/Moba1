@@ -65,12 +65,9 @@ public class LoginActivity extends AppCompatActivity {
             MenuInflater inflater = getMenuInflater();
             inflater.inflate(R.menu.activity_login_menu, menu);
         }
-
-
-
-
         return true;
     }
+
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
@@ -163,9 +160,6 @@ public class LoginActivity extends AppCompatActivity {
         else {
             PasswordSetCheck();
         }
-
-
-
     }
 
     @Override
